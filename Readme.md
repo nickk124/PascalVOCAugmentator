@@ -12,9 +12,9 @@ The script also attempts to prioritize augmenting images that have underrepresen
 
 The main script, `augmentAndBalanceData()` is used to run the pipeline, and has the following arguments, in order:
  
- **1.** `train_image_folder`, the folder containing the training images (path/string)
+ **1.** `imgPath`, the folder containing the training images (path/string)
  
- **2.** `train_annot_folder`, the folder containing the images' augmentations (see the below note) (path/string)
+ **2.** `labelPath`, the folder containing the images' augmentations (see the below note) (path/string)
  
  **3.** `allLabels`, a list of all possible class labels (list of strings)
  
