@@ -41,7 +41,6 @@ def getNewAugPath(imgpath, ind, file_extension): # makes sure that multiple augm
 
 def augmentSingleImg(all_train_ints_element, labelPath):#augments a single image and saves the new augmented image and it's xml label file)
     boxes, labels = getBoxesArrAndLabels(all_train_ints_element['object'])
-    #print(boxes, labels) 
     imgpath = all_train_ints_element['filename']
     imgfilename = os.path.basename(imgpath)
     _, imgfile_extension = os.path.splitext(imgpath)
@@ -56,16 +55,10 @@ def augmentSingleImg(all_train_ints_element, labelPath):#augments a single image
     augimgpath, newInd = getNewAugPath(imgpath, 0, imgfile_extension)
     cv2.imwrite(augimgpath, auged_img)
 
-    #print(img.shape, auged_img.shape)
-    # (720, 1280, 3) (917, 1379, 3)
 
     # make new xml file for augmented labels
-    #print(auged_bboxes, auged_labels)
-    # [[385 322 451 382], [647 288 712 355], [883 238 961 324]] 
-    # ['second' 'third' 'first']
     xmlpath = os.path.join(labelPath, imgfilename.replace(imgfile_extension, ".xml"))
     tree = ET.parse(xmlpath)
-    #print(str(ET.tostring(tree.getroot())))
     for elem in tree.iter():
             # modify all of the necessary tags from the unaugmented file
             # path
@@ -112,7 +105,6 @@ def augmentSingleImg(all_train_ints_element, labelPath):#augments a single image
 
     add = "_aug{}.xml".format(str(newInd))
     augxmlpath = xmlpath.replace(".xml", add)
-    #print(str(ET.tostring(tree.getroot())))
 
     # save label file
     tree.write(augxmlpath)
@@ -165,12 +157,8 @@ def augmentAndBalanceData(imgPath, labelPath, allLabels, minObjCount=100):
 
             ct = nonAugObjCount # running total number of training data that have this class, INCLUDING augmented.
             i = 0 # index used to loop over available non-augmented training data
-            #print(len(sortedLowTrainInts))
             while ct < minObjCount:
-                #print(ct - nonAugObjCount, nonAugObjCount - 1)
                 i = (( ct - nonAugObjCount ) % (nonAugObjCount - 1) )
-                
-                #print(i, ct, nonAugObjCount)
                 augmentSingleImg(sortedLowTrainInts[i], labelPath)
 
 
