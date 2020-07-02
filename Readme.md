@@ -2,7 +2,7 @@
 
 ## What is This Tool?
 
-While working on a machine learning project, I found myself needing to be able to easily augment object recognition training images and their corresponding bounding box labels in bulk. With the images labeled with multiple objects and/or classes via the Pascal VOC XML convention (e.g. https://gist.github.com/Prasad9/30900b0ef1375cc7385f4d85135fdb44), I needed any augmentation acting on some image to also act on the bounding boxes of the objects labeled in the image, such that the augmented image still had the objects labeled correctly. As such, I needed the augmented image to be accompanied by it's corresponding augmented XML file.
+While working on a machine learning project, I found myself needing to be able to easily augment object recognition training images and their corresponding bounding box labels in bulk. With the images labeled with multiple objects and/or classes via the Pascal VOC XML convention (e.g. https://gist.github.com/Prasad9/30900b0ef1375cc7385f4d85135fdb44), I needed any augmentation acting on some image to also act on the bounding boxes of the objects labeled in the image, such that the augmented image still had the objects labeled correctly. As such, I needed the augmented image to be accompanied by its corresponding augmented XML file.
 
 TL;DR: I wanted to be able to seamlessly feed a bunch of multi-class, multi-object XML-labeled training images into an image augmentation pipeline which returns augmented and correctly labeled images in the same format with minimal effort. That is what this script does.
 
